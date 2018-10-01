@@ -1,6 +1,6 @@
 var https = require('https');
 // creating empty variable to assign data
-var emptyVar;
+var result = '';
 function getAndPrintHTML () {
 
     var requestOptions = {
@@ -10,9 +10,11 @@ function getAndPrintHTML () {
     https.get(requestOptions, function(response){
         response.setEncoding('utf8');
         response.on('data', function (data) {
-            emptyVar += data;
-            console.log(emptyVar)
+            result += data;    
             /* Add your code here */
+        });
+        response.on('end', function() {
+            console.log(result);
         });
     });
 };
